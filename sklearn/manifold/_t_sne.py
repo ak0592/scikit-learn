@@ -893,7 +893,7 @@ class TSNE(BaseEstimator):
                 distances **= 2
 
             # compute the joint probability distribution for the input space
-            P = _joint_probabilities(distances, self.perplexity, self.verbose)
+            self.P = _joint_probabilities(distances, self.perplexity, self.verbose)
             assert np.all(np.isfinite(P)), "All probabilities should be finite"
             assert np.all(P >= 0), "All probabilities should be non-negative"
             assert np.all(
@@ -949,7 +949,7 @@ class TSNE(BaseEstimator):
                 distances_nn.data **= 2
 
             # compute the joint probability distribution for the input space
-            P = _joint_probabilities_nn(distances_nn, self.perplexity, self.verbose)
+            self.P = _joint_probabilities_nn(distances_nn, self.perplexity, self.verbose)
 
         if isinstance(self._init, np.ndarray):
             X_embedded = self._init
